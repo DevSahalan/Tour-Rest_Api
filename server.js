@@ -17,6 +17,10 @@ const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 );
+// const DB = process.env.DATABASE_LOCAL;
+
+// const DB =
+//   'mongodb+srv://myth:AsDf1234@natours.wgdse.mongodb.net/natours?retryWrites=true&w=majority';
 mongoose
   .connect(DB, {
     useUnifiedTopology: true,
