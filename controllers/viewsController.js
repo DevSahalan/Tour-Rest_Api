@@ -1,5 +1,6 @@
 const Tour = require('./../models/tourModel');
 const catchAsync = require('./../utilis/catchAsync');
+const User = require('./../models/userModel');
 
 exports.getOverview = catchAsync(async (req, res) => {
   const tours = await Tour.find();
@@ -28,3 +29,34 @@ exports.getLoginForm = (req, res) => {
     title: 'Log Into Your Account'
   });
 };
+
+exports.getAccount = (req, res) => {
+  res.status(200).render('account'),
+    {
+      title: 'your account'
+    };
+};
+
+exports.signUp = (req, res) => {
+  res.status(200).render('signup', {
+    title: 'Sign Up'
+  });
+};
+
+// exports.submitUserData = catchAsync(async (req, res) => {
+//   const updatedUser = await User.findByIdAndUpdate(
+//     req.user.id,
+//     {
+//       name: req.body.name,
+//       email: req.body.email
+//     },
+//     {
+//       new: true,
+//       runValidators: true
+//     }
+//   );
+
+//   res.status(200).render('account', {
+//     user: updatedUser
+//   });
+// });

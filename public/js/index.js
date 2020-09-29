@@ -1,10 +1,12 @@
 import '@babel/polyfill';
-import { login, logout } from './login';
+import { login, logout, signup } from './auth';
+import { updateSettings } from './updateSettings';
 
 //DOM ELEMENTS
-const loginForm = document.querySelector('.form');
+const loginForm = document.querySelector('.form--login');
 const logOutBtn = document.querySelector('.nav__el--logout');
-
+const signupForm = document.querySelector('.form--signup');
+const userDataForm = document.querySelector('.form-user-data');
 //VALUES
 
 //DELIGATION
@@ -17,6 +19,31 @@ if (loginForm) {
   });
 }
 if (logOutBtn) logOutBtn.addEventListener('click', logout);
+
+if (signupForm) {
+  signupForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.querySelector('.form__signup--name').value;
+    const email = document.querySelector('.form__signup--email').value;
+    const password = document.querySelector('.form__signup--password').value;
+    const passConfirmed = document.querySelector('.form__signup--passConfirmed')
+      .value;
+    signup(name, email, password, passConfirmed);
+  });
+}
+
+if (userDataForm) {
+  userDataForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append('name', document.getElementById('name').value);
+    form.append('email', document.getElementById('email').value);
+    form.append('photo', document.getElementById('photo').files[0]);
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    updateSettings(form);
+  });
+}
 
 // /* eslint-disable */
 // import '@babel/polyfill';

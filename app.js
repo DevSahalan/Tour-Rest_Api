@@ -19,6 +19,11 @@ const viewRouter = require('./routes/viewRoutes');
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  express.urlencoded({
+    extended: true
+  })
+);
 
 app.use(cors());
 app.set('view engine', 'pug');
@@ -82,7 +87,7 @@ app.use(function(req, res, next) {
     // "default-src * 'unsafe-inline'; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com https://fonts.googleapis.com/"
     "script-src 'self' cdnjs.cloudflare.com"
   );
-  console.log(req.cookies);
+  // console.log(req.cookies);
   return next();
 });
 app.use('/', viewRouter);
