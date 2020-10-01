@@ -13,6 +13,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
 const cors = require('cors');
+const compression = require('compression');
 // const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 const viewRouter = require('./routes/viewRoutes');
 
@@ -29,7 +30,7 @@ app.use(cors());
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(compression());
 app.use(helmet());
 
 app.use(mongoSanitize());
